@@ -1,0 +1,15 @@
+Photographs reused from the supplied Maas & Hof website, https://www.maasenhof.nl/ .
+
+hero-couple.webp
+https://primary.jwwb.nl/pexels/76/7641858.jpeg?width=1920
+Young adult couple reviewing home plans. Illustrative stock photography; do not identify depicted people as Maas & Hof staff or clients.
+
+family-future.webp
+https://primary.jwwb.nl/public/p/z/m/temp-hcfobydeapawpacwtjbf/pasted-image-thu-oct-15-2026-10-36-11-gmt-0200-midden-europese-zomertijd-standard.png
+Family hiking in the mountains; original website hero image. Illustrative lifestyle photography.
+
+
+Images converted to WebP and resized for this website; no changes to depicted scenes.
+
+Locally hosted variable webfonts from Google Fonts, latin subsets: DM Sans (100–1000), Manrope (200–800), Playfair Display normal and italic (400–900).
+Source CSS: https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..1000&family=Manrope:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap
