@@ -29,7 +29,13 @@ for (const dialog of document.querySelectorAll('dialog')) {
 function openContact(topic) {
   if (topic) $('#contact-form').elements.topic.value = topic;
   $('#form-status').textContent = '';
-  openDialog(contactDialog);
+  if (contactDialog) {
+    openDialog(contactDialog);
+  } else {
+    const form = $('#contact-form');
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    form.elements.name.focus({ preventScroll: true });
+  }
 }
 
 for (const button of document.querySelectorAll('[data-contact]')) {
@@ -127,9 +133,9 @@ function updateSavings() {
   goalInput.setCustomValidity('');
   $('#monthly-amount').textContent = euro.format(Math.ceil(goal / months));
 }
-$('#goal').addEventListener('input', updateSavings);
-$('#months').addEventListener('input', updateSavings);
-updateSavings();
+$('#goal')?.addEventListener('input', updateSavings);
+$('#months')?.addEventListener('input', updateSavings);
+if ($('#goal')) updateSavings();
 
 $('#contact-form').addEventListener('submit', (event) => {
   event.preventDefault();

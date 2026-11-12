@@ -4,11 +4,10 @@ on:
   push:
     branches: [main]
     paths:
-      - "index.html"
-      - "style.css"
-      - "app.js"
+      - "*.html"
+      - "*.css"
+      - "*.js"
       - "mortgage-*.mjs"
-      - "mortgage.css"
       - "tests/**"
       - "assets/**"
       - ".nojekyll"

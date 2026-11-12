@@ -61,3 +61,15 @@ Achtergrondinformatie: [AFM over betaalbaarheid](https://www.afm.nl/nl-nl/consum
 - De reeds bepaalde bruto toetslast van overige verplichtingen wordt van de maandruimte afgetrokken. Het veld is geen omzetting van gewone DUO-, lease- of BKR-maandbetalingen; zulke verplichtingen vragen een afzonderlijke toets en waar nodig brutering.
 - Extra leenruimte voor alleenstaanden of energielabels wordt niet meegenomen. De berekening bevat geen woningwaardetoets, NHG-beoordeling, pensioenberekening of individuele uitzonderingen. De uitkomst is een basisindicatie op inkomen en geen financieringsaanbod.
 - Dit is een vast 2026-model; de versie claimt geen actuele normen voor latere jaren. De pagina toont de normversie bij de uitkomst en een extra melding wanneer het browserjaar afwijkt van 2026.
+
+## Paginastructuur
+
+- `index.html`: korte introductie en ingangen naar diensten en tools.
+- `diensten.html`: hypotheekadvies, volgende levensfase en vermogensopbouw.
+- `werkwijze.html`: kennismaken, inzicht, advies en begeleiding.
+- `over-ons.html`: ons verhaal, missie, visie en waarden.
+- `rekentools.html`: hypotheekindicatie op inkomen, maandlasten en spaarplanner.
+- `veelgestelde-vragen.html`: antwoorden over kennismaken, kosten en advies.
+- `contact.html`: contactgegevens en het kennismakingsformulier.
+
+De paginas delen `app.js`, `style.css` en `pages.css`. Alleen de rekentoolpagina laadt de hypotheekmodules. `navigation.js` stuurt oudere homepage-links zoals `#hypotheek-berekenen` door naar de passende nieuwe pagina. Relatieve paden blijven werken onder het GitHub Pages-projectpad.
