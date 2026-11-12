@@ -4,7 +4,7 @@ Website voor Maas & Hof, gericht op jonge professionals en ondernemers van 25 to
 
 ## Website aanpassen
 
-De volledige website staat in `site/`:
+De volledige website staat in de hoofdmap van deze repository:
 
 - `index.html`: inhoud en paginaopbouw.
 - `style.css`: vormgeving en mobiele layouts.
@@ -15,7 +15,7 @@ Dit is een statische website zonder buildstap of externe JavaScript-afhankelijkh
 
 ## Publiceren met GitHub Pages
 
-Kies in de repository bij **Settings → Pages → Build and deployment → Source** voor **GitHub Actions**. De workflow in `.github/workflows/pages.yml` publiceert `site/` na wijzigingen op `main`. Je kunt hem ook handmatig starten via **Actions → Publish website to GitHub Pages → Run workflow**.
+GitHub Pages is ingeschakeld voor deze repository. De websitebestanden en `.nojekyll` staan in de hoofdmap, zodat zowel publicatie via GitHub Actions als via de ingestelde bronbranch `main` dezelfde homepage oplevert. Bij een nieuwe inrichting kun je bij **Settings → Pages → Build and deployment → Source** kiezen voor **GitHub Actions**. De workflow in `.github/workflows/pages.yml` publiceert de website na wijzigingen op `main`. Je kunt hem ook handmatig starten via **Actions → Publish website to GitHub Pages → Run workflow**.
 
 Het definitieve websiteadres verschijnt bij de geslaagde Pages-deployment en in **Settings → Pages**. Het standaardadres voor deze repository is `https://jorritroozendaal-dev.github.io/Maas-Hof/`.
 
@@ -30,5 +30,5 @@ De externe hypotheekberekening opent op de website van Nationale Hypotheek. Er z
 Controleer na een wijziging de ankers, relatieve assetpaden, mobiele weergave en contactgegevens. JavaScript-syntax is lokaal te controleren met:
 
 ```sh
-node --check site/app.js
+node --check app.js
 ```
