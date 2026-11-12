@@ -67,7 +67,7 @@ const serviceContent = {
     title: 'Je eerste huis. Een helder begin.',
     description: 'Een huis kopen is een grote stap. We kijken naar je woonwensen én de financiële ruimte die je over wilt houden voor je toekomst.',
     points: ['Inzicht in inkomen, eigen geld, maandlasten en toekomstige plannen.', 'Uitleg over hypotheekvormen, voorwaarden en financiële risico’s.', 'Aandacht voor energiezuinig wonen en mogelijke verduurzaming.'],
-    footnote: 'Wil je eerst zelf rekenen? De hypotheekrekentool op deze pagina laat bruto maandlasten zien. Je daadwerkelijke leencapaciteit en mogelijkheden vragen om een persoonlijke toets.',
+    footnote: 'Wil je eerst zelf rekenen? De hypotheekrekentool geeft een indicatie op inkomen en laat bruto maandlasten zien. Je daadwerkelijke leencapaciteit vraagt om een persoonlijke beoordeling.',
     topic: 'Mijn eerste huis'
   },
   'volgende-stap': {

@@ -11,7 +11,8 @@ De volledige website staat in de hoofdmap van deze repository:
 - `app.js`: spaarplanner, dienstenvensters, mobiel menu en kennismakingsmail.
 - `mortgage-tool.mjs` en `mortgage.css`: hypotheekrekentool en bijbehorende vormgeving.
 - `mortgage-math.mjs`: onafhankelijke rekenlogica voor annuïtaire en lineaire hypotheken.
-- `tests/mortgage-math.test.mjs`: automatische tests voor de financiële berekeningen.
+- `mortgage-income.mjs` en `mortgage-income-data.mjs`: inkomensindicatie met officiële financieringslastpercentages van 2026.
+- `tests/*.test.mjs`: automatische tests voor de financiële berekeningen en inkomensnormen.
 - `assets/`: lokale fotografie, lettertypen en favicon. Bronnen staan in `assets/SOURCES.txt`.
 
 Dit is een statische website zonder buildstap of externe JavaScript-afhankelijkheden. Alle assetpaden zijn relatief, zodat de website ook werkt op een GitHub Pages-projectadres met een repositorynaam in het pad.
@@ -38,14 +39,25 @@ node --check app.js
 
 ## Hypotheekrekentool
 
-De tool berekent bruto maandlasten bij een leningbedrag of een theoretisch leningbedrag bij een zelfgekozen bruto maandbudget. Annuïtair en lineair aflossen worden ondersteund. De uitsplitsing toont rente en aflossing in de eerste maand, de laatste maandlast, totale rente en de jaarlijkse restschuld.
+De tool berekent een basisindicatie van de maximale hypotheek op bruto jaarinkomen, bruto maandlasten bij een leningbedrag of een theoretisch leningbedrag bij een zelfgekozen bruto maandbudget. Annuïtair en lineair aflossen worden ondersteund. De uitsplitsing toont rente en aflossing in de eerste maand, de laatste maandlast, totale rente en de jaarlijkse restschuld.
 
-Dit is een rekenvoorbeeld met één leningdeel en een vaste rente voor de hele looptijd. De standaardrente van 4% is een instelbaar voorbeeld en geen renteaanbieding. De tool toetst geen inkomen, schulden, woningwaarde of wettelijke leennormen en berekent geen persoonlijke maximale hypotheek. Bij de budgetmodus wordt voor lineair aflossen de hoogste, eerste maandlast gebruikt. Bedragen worden alleen bij weergave afgerond; het budgetbedrag van de lening wordt naar beneden afgerond op hele euro’s.
+Dit is een rekenvoorbeeld met één leningdeel en een vaste rente voor de hele looptijd. De standaardrente van 4% is een instelbaar voorbeeld en geen renteaanbieding. De stand “Maximaal lenen” gebruikt de officiële financieringslastpercentages van 2026. De andere twee standen toetsen geen leencapaciteit. Een geldverstrekker moet bestendigheid van inkomsten, persoonlijke verplichtingen, woningwaarde en acceptatievoorwaarden apart beoordelen. Bij de budgetmodus wordt voor lineair aflossen de hoogste, eerste maandlast gebruikt. Bedragen worden alleen bij weergave afgerond; het budgetbedrag van de lening wordt naar beneden afgerond op hele euro’s.
 
 De financiële tests worden ook in GitHub Actions uitgevoerd vóór publicatie:
 
 ```sh
-node --test tests/mortgage-math.test.mjs
+node --test tests/*.test.mjs
 ```
 
 Achtergrondinformatie: [AFM over betaalbaarheid](https://www.afm.nl/nl-nl/consumenten/themas/hypotheken/hypotheek-betalen) en [ABN AMRO over hypotheekvormen](https://www.abnamro.nl/nl/prive/hypotheken/hypotheek-afsluiten/hypotheekvormen/annuiteiten-of-lineair.html).
+
+### Inkomensindicatie — normen 2026
+
+- Eigen bruto toetsinkomen en een eventueel meelenend partnerinkomen tellen voor 100% mee. Een uitgeschakeld partnerinkomen wordt genegeerd. Geen inkomen wordt als bestendig gevalideerd door de tool.
+- Alleen aanvragers die niet binnen tien jaar de AOW-leeftijd bereiken, volledig aftrekbare rente, één leningdeel en dertig jaar annuïtair aflossen vallen binnen dit model.
+- De financieringslastpercentages komen integraal uit tabel 1 van de [Wijzigingsregeling hypothecair krediet 2026](https://zoek.officielebekendmakingen.nl/stcrt-2025-36471.html) en zijn vergeleken met de [geconsolideerde regeling](https://repository.officiele-overheidspublicaties.nl/bwb/BWBR0032503/2026-01-01_0/xml/BWBR0032503_2026-01-01_0.xml). Er worden geen inkomensmultiples of geïnterpoleerde percentages gebruikt.
+- De lookup gebruikt de hoogste inkomensrij die niet boven het werkelijke gezamenlijke inkomen ligt. Boven €125.000 blijft het percentage uit de laatste tabelrij gelden; het model ondersteunt gezamenlijk maximaal €500.000. Dit sluit aan bij de benaderende MATCH-formule in de oorspronkelijke Nibud-rekenhulp (gespiegeld op [Adviesforum](https://adviesforum.nl/documenten/Bijlage-financieringslastnormen-2026.xlsx)); alle tabelcellen zijn gecontroleerd tegen de primaire overheidspublicatie.
+- Bij minder dan tien jaar rentevast wordt de hoogste van de opgegeven rente en de AFM-toetsrente van 5% voor kwartaal 4 van 2026 gebruikt. De getoonde bruto maandlast rekent vervolgens met de opgegeven voorbeeldrente.
+- De reeds bepaalde bruto toetslast van overige verplichtingen wordt van de maandruimte afgetrokken. Het veld is geen omzetting van gewone DUO-, lease- of BKR-maandbetalingen; zulke verplichtingen vragen een afzonderlijke toets en waar nodig brutering.
+- Extra leenruimte voor alleenstaanden of energielabels wordt niet meegenomen. De berekening bevat geen woningwaardetoets, NHG-beoordeling, pensioenberekening of individuele uitzonderingen. De uitkomst is een basisindicatie op inkomen en geen financieringsaanbod.
+- Dit is een vast 2026-model; de versie claimt geen actuele normen voor latere jaren. De pagina toont de normversie bij de uitkomst en een extra melding wanneer het browserjaar afwijkt van 2026.
