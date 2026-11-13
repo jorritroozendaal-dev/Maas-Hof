@@ -9,6 +9,11 @@ on:
       - "*.js"
       - "mortgage-*.mjs"
       - "tests/**"
+      - "src/**"
+      - "templates/**"
+      - "scripts/**"
+      - "sitemap.xml"
+      - "robots.txt"
       - "assets/**"
       - ".nojekyll"
       - ".github/workflows/pages.yml"
@@ -32,6 +37,11 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v7.0.1
+
+      - name: Build static pages from templates
+        run: |
+          node scripts/build.mjs
+          git diff --exit-code -- "*.html" sitemap.xml robots.txt
 
       - name: Check mortgage calculations
         run: node --test tests/*.test.mjs

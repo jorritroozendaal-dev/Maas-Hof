@@ -1,50 +1,4 @@
 const $ = (selector) => document.querySelector(selector);
-const contactDialog = $('#contact-dialog');
-const serviceDialog = $('#service-dialog');
-const privacyDialog = $('#privacy-dialog');
-let activeDialog = null;
-
-function openDialog(dialog) {
-  if (activeDialog?.open) activeDialog.close();
-  dialog.showModal();
-  activeDialog = dialog;
-  document.body.style.overflow = 'hidden';
-}
-
-for (const dialog of document.querySelectorAll('dialog')) {
-  dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('close', () => {
-    if (activeDialog === dialog) {
-      activeDialog = null;
-      document.body.style.overflow = '';
-    }
-  });
-  dialog.addEventListener('click', (event) => {
-    if (event.target !== dialog) return;
-    const rect = dialog.getBoundingClientRect();
-    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
-  });
-}
-
-function openContact(topic) {
-  if (topic) $('#contact-form').elements.topic.value = topic;
-  $('#form-status').textContent = '';
-  if (contactDialog) {
-    openDialog(contactDialog);
-  } else {
-    const form = $('#contact-form');
-    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    form.elements.name.focus({ preventScroll: true });
-  }
-}
-
-for (const button of document.querySelectorAll('[data-contact]')) {
-  button.addEventListener('click', () => {
-    closeMenu();
-    openContact();
-  });
-}
-
 const menuToggle = $('.menu-toggle');
 const mobileNav = $('#mobile-nav');
 function closeMenu() {
@@ -65,53 +19,7 @@ document.addEventListener('keydown', (event) => {
     menuToggle.focus();
   }
 });
-window.matchMedia('(min-width: 701px)').addEventListener('change', (event) => { if (event.matches) closeMenu(); });
-
-const serviceContent = {
-  'eerste-huis': {
-    label: 'VAN WOONWENS NAAR WOONPLAN',
-    title: 'Je eerste huis. Een helder begin.',
-    description: 'Een huis kopen is een grote stap. We kijken naar je woonwensen én de financiële ruimte die je over wilt houden voor je toekomst.',
-    points: ['Inzicht in inkomen, eigen geld, maandlasten en toekomstige plannen.', 'Uitleg over hypotheekvormen, voorwaarden en financiële risico’s.', 'Aandacht voor energiezuinig wonen en mogelijke verduurzaming.'],
-    footnote: 'Wil je eerst zelf rekenen? De hypotheekrekentool geeft een indicatie op inkomen en laat bruto maandlasten zien. Je daadwerkelijke leencapaciteit vraagt om een persoonlijke beoordeling.',
-    topic: 'Mijn eerste huis'
-  },
-  'volgende-stap': {
-    label: 'RUIMTE VOOR EEN NIEUW HOOFDSTUK',
-    title: 'Je leven verandert. Je plan beweegt mee.',
-    description: 'Ga je samenwonen, verhuizen of anders werken? We bekijken hoe je financiële keuzes kunnen aansluiten op je nieuwe situatie.',
-    points: ['Je huidige hypotheek en nieuwe woonwensen bespreken.', 'De invloed van gezinsplannen, ondernemerschap of wisselend inkomen verkennen.', 'Afspreken welke begeleiding past bij jouw nieuwe levensfase.'],
-    footnote: 'Elke situatie is anders. In een kennismaking bespreken we wat voor jou aandacht verdient en welke begeleiding daarbij past.',
-    topic: 'Verhuizen of samenwonen'
-  },
-  later: {
-    label: 'VANDAAG BEGINNEN AAN LATER',
-    title: 'Meer grip. Meer ruimte voor later.',
-    description: 'Financiële vrijheid, ruimte voor je gezin of vermogen voor je pensioen. We beginnen bij wat jij wilt bereiken en onderzoeken welke keuzes daarbij passen.',
-    points: ['Je financiële doelen, buffer en beleggingshorizon in kaart brengen.', 'Je kennis, ervaring en bereidheid om risico te nemen bespreken.', 'Kosten, risico’s en duurzaamheidsvoorkeuren samen afwegen.'],
-    footnote: 'Beleggen brengt risico’s met zich mee. Je kunt een deel van je inleg verliezen. Wat bij jou past, bespreken we persoonlijk; deze website geeft geen beleggingsadvies.',
-    topic: 'Financiële planning en vermogensopbouw'
-  }
-};
-let selectedService = null;
-for (const button of document.querySelectorAll('[data-service]')) {
-  button.addEventListener('click', () => {
-    selectedService = serviceContent[button.dataset.service];
-    $('#service-label').textContent = selectedService.label;
-    $('#service-title').textContent = selectedService.title;
-    $('#service-description').textContent = selectedService.description;
-    $('#service-footnote').textContent = selectedService.footnote;
-    const points = selectedService.points.map((text) => {
-      const li = document.createElement('li');
-      li.textContent = text;
-      return li;
-    });
-    $('#service-points').replaceChildren(...points);
-    openDialog(serviceDialog);
-  });
-}
-$('#service-contact').addEventListener('click', () => openContact(selectedService?.topic));
-$('#privacy-button').addEventListener('click', () => openDialog(privacyDialog));
+window.matchMedia('(min-width: 1101px)').addEventListener('change', (event) => { if (event.matches) closeMenu(); });
 
 const euro = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 function updateSavings() {
@@ -137,7 +45,11 @@ $('#goal')?.addEventListener('input', updateSavings);
 $('#months')?.addEventListener('input', updateSavings);
 if ($('#goal')) updateSavings();
 
-$('#contact-form').addEventListener('submit', (event) => {
+const contactForm = $('#contact-form');
+if (contactForm) {
+for (const button of contactForm.querySelectorAll('[data-contact-action]')) button.disabled = false;
+contactForm.elements.name.addEventListener('input', () => contactForm.elements.name.setCustomValidity(''));
+contactForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const form = event.currentTarget;
   if (!form.reportValidity()) return;
@@ -157,5 +69,23 @@ $('#contact-form').addEventListener('submit', (event) => {
   const link = document.createElement('a');
   link.href = `mailto:Contact@maasenhof.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   link.click();
-  $('#form-status').textContent = 'Je e-mailprogramma is aangeroepen. Verstuur het bericht daar om je kennismaking aan te vragen. Opent er niets? Mail dan zelf naar Contact@maasenhof.nl.';
+  $('#form-status').textContent = 'Je aanvraag is nog niet verzonden. Verstuur het bericht in je mailprogramma. Opent er niets? Kopieer je bericht en mail het zelf naar Contact@maasenhof.nl.';
 });
+
+$('#copy-message').addEventListener('click', async () => {
+  contactForm.elements.name.setCustomValidity(contactForm.elements.name.value.trim() ? '' : 'Vul je naam in.');
+  if (!contactForm.reportValidity()) return;
+  const data = new FormData(contactForm);
+  const text = `Aan: Contact@maasenhof.nl\nOnderwerp: Kennismaking — ${data.get('topic')}\n\nHallo Maas & Hof,\n\n${String(data.get('message')).trim()}\n\nWillen jullie contact met mij opnemen?\nNaam: ${String(data.get('name')).trim()}\nE-mail: ${data.get('email')}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    $('#form-status').textContent = 'Je bericht is gekopieerd, nog niet verzonden. Plak het in je e-mail en verstuur het naar Contact@maasenhof.nl.';
+  } catch {
+    $('#copy-fallback-field').hidden = false;
+    $('#copy-fallback').value = text;
+    $('#copy-fallback').focus();
+    $('#copy-fallback').select();
+    $('#form-status').textContent = 'Automatisch kopiëren lukt niet. Kopieer de geselecteerde tekst hieronder en verstuur die via je eigen e-mail.';
+  }
+});
+}

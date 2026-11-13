@@ -73,3 +73,13 @@ Achtergrondinformatie: [AFM over betaalbaarheid](https://www.afm.nl/nl-nl/consum
 - `contact.html`: contactgegevens en het kennismakingsformulier.
 
 De paginas delen `app.js`, `style.css` en `pages.css`. Alleen de rekentoolpagina laadt de hypotheekmodules. `navigation.js` stuurt oudere homepage-links zoals `#hypotheek-berekenen` door naar de passende nieuwe pagina. Relatieve paden blijven werken onder het GitHub Pages-projectpad.
+
+## Beheer na de website-analyse
+
+Bewerk pagina-inhoud in `src/pages/`. De gedeelde navigatie en footer staan in `templates/`. Voer daarna `node scripts/build.mjs` uit en commit zowel bron als gegenereerde HTML. GitHub Actions controleert dat de build geen onopgeslagen verschillen oplevert. Er zijn geen extra npm-afhankelijkheden nodig.
+
+Nieuwe dienstenpagina’s: `hypotheekadvies.html` en `beleggen.html`. Privacy is rechtstreeks beschikbaar op `privacy.html`. De ongebruikte service-, contact- en privacydialogs zijn verwijderd; contact verloopt alleen op de contactpagina, via een mailconcept of het kopiëren van het bericht. Er is geen formulierbackend toegevoegd.
+
+Zie [verwerking van de analyse](docs/analysis-implementation.md), [gebruikersonderzoek dat nog uitgevoerd moet worden](docs/usability-testplan.md) en [normbeheer](docs/norm-maintenance.md). Tarieven en onbevestigde bedrijfsgegevens zijn bewust niet verzonnen.
+
+De build genereert sitemap.xml en robots.txt. Op een GitHub Pages-projectsite staat dat robots-bestand onder het projectpad; de hostbrede robots-URL op `/robots.txt` valt buiten deze repository. De sitemap gebruikt de canonical-URL’s van dit project. Lighthouse en echte gebruikers-/schermlezertests zijn nog niet uitgevoerd.
