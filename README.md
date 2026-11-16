@@ -83,3 +83,7 @@ Nieuwe dienstenpagina’s: `hypotheekadvies.html` en `beleggen.html`. Privacy is
 Zie [verwerking van de analyse](docs/analysis-implementation.md), [gebruikersonderzoek dat nog uitgevoerd moet worden](docs/usability-testplan.md) en [normbeheer](docs/norm-maintenance.md). Tarieven en onbevestigde bedrijfsgegevens zijn bewust niet verzonnen.
 
 De build genereert sitemap.xml en robots.txt. Op een GitHub Pages-projectsite staat dat robots-bestand onder het projectpad; de hostbrede robots-URL op `/robots.txt` valt buiten deze repository. De sitemap gebruikt de canonical-URL’s van dit project. Lighthouse en echte gebruikers-/schermlezertests zijn nog niet uitgevoerd.
+
+## Intranet
+
+De footer bevat `intranet.html`. De interne inhoud staat alleen versleuteld in `intranet-payload.json`; het wachtwoord staat niet in de repository. Zie [de toegangsopzet en grenzen](docs/intranet.md) voordat interne informatie wordt toegevoegd. Het intranet is niet opgenomen in de sitemap en heeft een noindex-instructie; vertrouwelijkheid komt van versleuteling, niet van die zoekmachine-instructie.

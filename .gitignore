@@ -3,3 +3,7 @@ Thumbs.db
 *.log
 .env
 .env.*
+
+# Never commit private intranet source or credential files
+*.private.*
+*.secret*

@@ -8,6 +8,8 @@ on:
       - "*.css"
       - "*.js"
       - "mortgage-*.mjs"
+      - "intranet*.mjs"
+      - "intranet-payload.json"
       - "tests/**"
       - "src/**"
       - "templates/**"

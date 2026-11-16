@@ -13,6 +13,6 @@ for (const name of files) {
   await writeFile(path.join(root, name), page);
 }
 const base = 'https://jorritroozendaal-dev.github.io/Maas-Hof/';
-await writeFile(path.join(root, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + files.map(name => `  <url><loc>${base}${name === 'index.html' ? '' : name}</loc></url>`).join('\n') + '\n</urlset>\n');
+await writeFile(path.join(root, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + files.filter(name => name !== 'intranet.html').map(name => `  <url><loc>${base}${name === 'index.html' ? '' : name}</loc></url>`).join('\n') + '\n</urlset>\n');
 await writeFile(path.join(root, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${base}sitemap.xml\n`);
 console.log(`Built ${files.length} pages, sitemap and robots.txt.`);
