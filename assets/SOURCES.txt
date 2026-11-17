@@ -13,3 +13,6 @@ Images converted to WebP and resized for this website; no changes to depicted sc
 
 Locally hosted variable webfonts from Google Fonts, latin subsets: DM Sans (100–1000), Manrope (200–800), Playfair Display normal and italic (400–900).
 Source CSS: https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..1000&family=Manrope:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap
+
+jorrit-roozendaal.jpg and megan-breumelhof.jpg
+Original portraits supplied by the user in Adviseurs.zip on 17 November 2026, for the named team profiles on Over ons. Copied without alteration.
