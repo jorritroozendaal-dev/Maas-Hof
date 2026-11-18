@@ -87,3 +87,9 @@ De build genereert sitemap.xml en robots.txt. Op een GitHub Pages-projectsite st
 ## Intranet
 
 De footer bevat `intranet.html`. De interne inhoud staat alleen versleuteld in `intranet-payload.json`; het wachtwoord staat niet in de repository. Zie [de toegangsopzet en grenzen](docs/intranet.md) voordat interne informatie wordt toegevoegd. Het intranet is niet opgenomen in de sitemap en heeft een noindex-instructie; vertrouwelijkheid komt van versleuteling, niet van die zoekmachine-instructie.
+
+## Blogs
+
+`blog.html` is het overzicht; vier losse `blog-*.html` pagina’s bevatten de artikelen. Bewerk de inhoud in `src/pages/` en voer daarna `node scripts/build.mjs` uit. De gedeelde navigatie markeert Blog ook als actieve rubriek op artikelpagina’s.
+
+De eerste artikelen zijn op 18 november 2026 namens Team Maas & Hof geschreven. Ze bevatten eigen redactionele tekst, bronverwijzingen voor feitelijke informatie, datum en vervolgstappen. Er zijn geen verzonnen klantverhalen, persoonlijke praktijkervaringen of rendementen gebruikt. Controleer bij inhoudelijke updates de primaire bronnen en pas de zichtbare en gestructureerde datums alleen aan als het artikel werkelijk is bijgewerkt. Voeg nieuwe artikelen ook toe aan het overzicht en de gerelateerde links.
