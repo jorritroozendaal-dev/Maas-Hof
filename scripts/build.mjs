@@ -7,8 +7,8 @@ const footer = await readFile(path.join(root, 'templates/footer.html'), 'utf8');
 const files = (await readdir(path.join(root, 'src/pages'))).filter(p => p.endsWith('.html')).sort();
 for (const name of files) {
   const source = await readFile(path.join(root, 'src/pages', name), 'utf8');
-  const navPage = name.startsWith('blog-') ? 'blog.html' : name;
-  const current = name.startsWith('blog-') ? 'true' : 'page';
+  const navPage = name.startsWith('blog-') ? 'blog.html' : name === 'budgetplanner.html' ? 'rekentools.html' : name;
+  const current = name.startsWith('blog-') || name === 'budgetplanner.html' ? 'true' : 'page';
   const active = header.replaceAll(`href="${navPage}"`, `href="${navPage}" aria-current="${current}"`);
   const page = source.replace('{{header}}', active).replace('{{footer}}', footer);
   if (/\{\{\w+\}\}/.test(page)) throw new Error(`Unresolved template: ${name}`);

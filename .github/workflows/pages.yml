@@ -8,6 +8,7 @@ on:
       - "*.css"
       - "*.js"
       - "mortgage-*.mjs"
+      - "budget-*.mjs"
       - "intranet*.mjs"
       - "intranet-payload.json"
       - "tests/**"
@@ -45,7 +46,7 @@ jobs:
           node scripts/build.mjs
           git diff --exit-code -- "*.html" sitemap.xml robots.txt
 
-      - name: Check mortgage calculations
+      - name: Check calculations, contact and intranet
         run: node --test tests/*.test.mjs
 
       - name: Configure GitHub Pages
