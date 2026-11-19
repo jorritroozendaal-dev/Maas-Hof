@@ -1,0 +1,55 @@
+/* Shared editorial layout for every page introduction. */
+.page-intro{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);align-items:stretch;gap:0;padding:0;margin-block:32px 36px;background:var(--cream);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.page-intro-copy{min-width:0;padding:clamp(28px,3.6vw,48px);align-self:center}
+.page-intro .eyebrow{font-size:14px!important;line-height:1.7;margin-bottom:18px}
+.page-intro h1{font-size:clamp(38px,4.1vw,56px);line-height:1.14;letter-spacing:-.04em;overflow-wrap:break-word;text-wrap:balance;color:var(--green)}
+.page-intro h1 em,.blog-heading h1 em{color:#3c6a56}
+.page-intro-copy>p:not(.eyebrow){font-size:17px;line-height:1.8;color:var(--muted);margin-top:22px;max-width:650px}
+.page-intro-copy>.inline-actions{gap:18px 26px;margin-top:24px}
+.page-intro-copy>.inline-actions .button{margin:0}
+.intro-media{position:relative;min-width:0;min-height:410px;margin:0;background:var(--sage);isolation:isolate}
+.intro-media>img{position:absolute;inset:0;height:100%;width:100%;object-fit:cover;object-position:center}
+.intro-media.intro-planning>img{object-position:center 62%}
+.intro-media.intro-investment>img{object-position:58% center}
+.intro-media:after{content:'';position:absolute;inset:52% 0 0;background:linear-gradient(transparent,rgba(13,44,36,.86));pointer-events:none;z-index:0}
+.intro-media figcaption{position:absolute;left:28px;right:28px;bottom:25px;color:#fff;font-size:16px;line-height:1.55;z-index:1;max-width:32ch}
+.intro-media figcaption span{display:block;font-family:var(--serif);font-size:27px;line-height:1.25;margin-bottom:8px}
+.intro-team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));min-height:430px}
+.intro-team>img{position:static;height:100%;min-height:430px;object-position:center 24%}
+.intro-team figcaption{max-width:none}
+main p a:not(.button):not(.text-link):not(.tool-external),main li a:not(.button):not(.text-link),.brand-promise a{color:var(--green);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+main p a:not(.button):hover,main li a:hover,.brand-promise a:hover{color:#426e55;text-decoration-thickness:2px}
+.hero-description a{color:var(--green);text-decoration:underline;text-underline-offset:4px}
+.hero h1{font-size:clamp(46px,5.1vw,72px);text-wrap:balance}
+.hero-description{font-size:17px;line-height:1.8;max-width:550px}
+.hero{align-items:stretch}
+.hero-copy{align-self:center}
+.hero-visual{height:auto;min-height:560px}
+.hero-photo{position:absolute;inset:0}
+.analysis-block p+p,.home-blog>p+p{margin-top:18px}
+.content-subheading{font-size:23px;line-height:1.4;margin-top:30px;margin-bottom:18px}
+.contact-preparation{margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.contact-preparation h3{font-size:22px;line-height:1.4}
+.contact-preparation p{font-size:16px;line-height:1.85;color:var(--muted);margin-top:18px}
+.tool-context{padding-top:25px;padding-bottom:25px}
+.tool-context p{max-width:900px}
+.intranet-intro-note{margin-top:0!important;margin-bottom:25px!important}
+.blog-heading{padding-block:28px 0;border-bottom:0;margin-bottom:25px}
+.blog-breadcrumb{margin-bottom:24px}
+.article-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);border:1px solid var(--line);border-radius:10px;background:var(--cream);overflow:hidden}
+.article-intro .page-intro-copy{padding:clamp(26px,3.5vw,45px)}
+.blog-heading h1{font-size:clamp(36px,3.6vw,49px);line-height:1.18;letter-spacing:-.035em;text-wrap:balance;color:var(--green)}
+.blog-heading .eyebrow{font-size:14px!important;margin-bottom:18px}
+.blog-heading .blog-lead{font-size:17px;line-height:1.8;margin-top:24px}
+.blog-heading .blog-byline{font-size:14px;margin-top:22px}
+.article-intro .intro-media{min-height:440px}
+.brand-promise{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px 55px;padding:34px 38px;background:var(--cream);border:1px solid var(--line);border-radius:8px;margin-bottom:48px}
+.brand-promise .eyebrow{font-size:14px;margin-bottom:12px}
+.brand-promise p:not(.eyebrow){font-size:16px;line-height:1.8;color:var(--green)}
+.brand-promise a{display:inline-block;margin-top:15px;font-size:14px}
+.site-footer{padding-top:45px}
+[id]{scroll-margin-top:24px}
+@media(max-width:1000px){.page-intro,.article-intro{grid-template-columns:minmax(0,1fr) minmax(0,.85fr)}.page-intro-copy{padding:30px}.page-intro h1{font-size:43px}.blog-heading h1{font-size:38px}.intro-media{min-height:430px}.intro-team{grid-template-columns:1fr 1fr 1fr}.intro-team>img{object-position:50% 26%}.intro-media figcaption{left:22px;right:22px;bottom:22px}.intro-media figcaption span{font-size:25px}.brand-promise{padding:28px;gap:28px}.hero-visual{min-height:560px}}
+@media(max-width:800px){.page-intro,.article-intro{grid-template-columns:1fr}.page-intro{margin-block:24px 28px}.page-intro-copy,.article-intro .page-intro-copy{padding:30px}.page-intro h1{font-size:clamp(36px,6vw,47px)}.intro-media,.article-intro .intro-media{min-height:0;height:280px}.intro-team{height:300px;min-height:0}.intro-team>img{min-height:0;height:300px;object-position:center 24%}.blog-heading h1{font-size:clamp(34px,6vw,45px)}.page-intro-copy>p:not(.eyebrow){max-width:100%}.brand-promise{grid-template-columns:1fr;gap:28px}.brand-promise>div+div{padding-top:25px;border-top:1px solid var(--line)}.hero-visual{height:430px;min-height:0}.hero-photo{position:static}.hero{align-items:center;grid-template-columns:1fr;gap:30px;min-height:0;padding-block:30px}.hero-description{font-size:16px}.hero h1{font-size:clamp(44px,8vw,60px)}}
+@media(max-width:500px){.page-intro-copy,.article-intro .page-intro-copy{padding:25px 23px}.page-intro .eyebrow{letter-spacing:1.4px}.page-intro h1{font-size:37px}.page-intro-copy>p:not(.eyebrow),.blog-heading .blog-lead{font-size:16px;line-height:1.8}.intro-media,.article-intro .intro-media{height:250px}.intro-team,.intro-team>img{height:260px}.intro-media figcaption{left:23px;bottom:20px;font-size:14px}.intro-media figcaption span{font-size:24px}.blog-heading h1{font-size:34px}.brand-promise{padding:25px 23px;margin-bottom:35px}.hero-visual{height:360px}.hero-description{max-width:none}.hero-seal{right:-8px}.hero h1{font-size:46px}.site-footer{padding-top:30px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button,.blog-card{transition:none}.button:hover,.blog-card:hover{transform:none}}
