@@ -62,3 +62,7 @@ main p a:not(.button):hover,main li a:hover,.brand-promise a:hover{color:#426e55
 .intro-team-four figcaption span{font-size:23px;margin-bottom:5px}
 @media(max-width:800px){.intro-team.intro-team-four{height:480px;min-height:0}.intro-team-four>img{height:100%;min-height:0;object-position:center 25%}}
 @media(max-width:500px){.intro-team.intro-team-four{height:430px}.intro-team-four figcaption{padding:16px 23px}.intro-team-four figcaption span{font-size:22px}}
+
+/* The About introduction uses the full width without a photo column. */
+.page-over-ons .page-intro{grid-template-columns:minmax(0,1fr)}
+.page-over-ons .page-intro-copy>p:not(.eyebrow){max-width:900px}
